@@ -7,8 +7,7 @@ const NasaInfo = () => {
    const fetchNasaData = async () => {
      try {
        // Use the demo key for testing
-        // const apiKey = 'DEMO_KEY';
-       const apiKey = 'zdqL6916XxJTGynjBI3M4c5v9f6s5wskqHIklS1w';
+       const apiKey = 'DEMO_KEY';
        const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
        const response = await fetch(apiUrl);
