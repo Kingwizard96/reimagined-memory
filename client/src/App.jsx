@@ -1,4 +1,4 @@
-import NasaInfo from './components/NasaInfo';
+import NasaInfo from './pages/NasaInfo';
 
 const App = () => {
   return (
