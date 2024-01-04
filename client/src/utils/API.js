@@ -8,14 +8,15 @@ export const getFormattedDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-export const fetchNasaData = async (startDate, endDate, apiKey) => {
+export const fetchNasaData = async (startDate, endDate) => {
   try {
+    const apiKey = 'DEMO_KEY';
     const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${startDate}&end_date=${endDate}`;
     const response = await axios.get(apiUrl);
-    
+
     return {
       data: response.data,
-      headers: response.headers, 
+      headers: response.headers,
       status: response.status,
       statusText: response.statusText,
     };

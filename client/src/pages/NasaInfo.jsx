@@ -10,7 +10,7 @@ export default function NasaInfo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiKey = 'DEMO_KEY'; // Replace with your actual API key
+        const apiKey = 'DEMO_KEY'// Replace with your actual API key
         const today = getFormattedDate(new Date());
         const weekAgo = getFormattedDate(new Date(new Date().setDate(new Date().getDate() - 6)));
         const startDate = isFetchingWeek ? weekAgo : today;
