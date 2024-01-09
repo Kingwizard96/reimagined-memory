@@ -12,9 +12,7 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  // using the apollo hook  useMutation pass the
-  // ADD_USER mutation in order to talk to graphql
-  // addUser will hold the output and error the error
+
 
   const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -26,7 +24,6 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -38,7 +35,6 @@ const LoginForm = () => {
         variables: { ...userFormData },
       });
 
-      // Store the token in local storage
       Auth.login(data.login.token);
       console.log(data);
     } catch (e) {

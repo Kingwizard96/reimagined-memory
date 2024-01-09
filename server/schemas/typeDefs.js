@@ -1,12 +1,10 @@
-
 const typeDefs = `
-  
   type Query {
     me: User
     users: [User]
     user(username: String!): User
     getNasaData(startDate: String, endDate: String): NasaData
-    getNasaImages: [NasaImage]
+    nasaImages: [NasaImage]
   }
 
   type Mutation {
@@ -17,8 +15,21 @@ const typeDefs = `
     # Add other mutations as needed
   }
 
+  type User {
+    id: ID!
+    username: String!
+    email: String!
+    savedNasaImages: [NasaImage]
+    imageCount: Int
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type NasaData {
-    data: String
+    data: [NasaImage]  
     headers: String
     status: Int
     statusText: String
@@ -29,19 +40,6 @@ const typeDefs = `
     title: String!
     url: String!
     date: String!
-  }
-
-  type Auth {
-    token: ID!
-    user: User
-  }
-
-  type User {
-    id: ID!
-    username: String!
-    email: String!
-    savedNasaImages: [NasaImage]
-    imageCount: Int
   }
 `;
 

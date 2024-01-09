@@ -1,8 +1,19 @@
 const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const { fetchNasaData } = require('../controllers/nasaApi');
+
 
 const resolvers = {
   Query: {
+    getNasaData: async (parent, { startDate, endDate }) => {
+      const nasaData = await fetchNasaData(startDate, endDate);
+      return {
+        data: nasaData.data, // Return an object with 'data' field
+        headers: nasaData.headers,
+        status: nasaData.status,
+        statusText: nasaData.statusText,
+      };
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findById(context.user._id).select("-__v -password").populate("savedNasaImages");
@@ -69,3 +80,9 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+
+
+
+
+

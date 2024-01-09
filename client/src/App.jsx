@@ -8,7 +8,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import NasaInfo from './pages/NasaInfo';
 
 import Navbar from './components/Navbar';
 
@@ -39,7 +38,6 @@ function App() {
     // ApolloProvider will make every request work with the ApolloClient
     <ApolloProvider client={client}>
     <Navbar />
-    < NasaInfo />
     <Outlet />
   </ApolloProvider>
   );

@@ -1,17 +1,20 @@
-// utils/nasaApi.js
-import axios from 'axios';
+const axios = require('axios');
 
-export const getFormattedDate = (date) => {
+module.exports.getFormattedDate = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
 
-export const fetchNasaData = async (startDate, endDate) => {
+module.exports.fetchNasaData = async (startDate, endDate) => {
   try {
     const apiKey = 'DEMO_KEY'; // Replace with your NASA API key
-    const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${startDate}&end_date=${endDate}`;
+    const formattedStartDate = this.getFormattedDate(new Date(startDate));
+    const formattedEndDate = this.getFormattedDate(new Date(endDate));
+
+    const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${formattedStartDate}&end_date=${formattedEndDate}`;
+    
     const response = await axios.get(apiUrl);
 
     return {

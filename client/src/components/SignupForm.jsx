@@ -14,12 +14,8 @@ const SignupForm = () => {
   });
   // set state for form validation
   const [validated] = useState(false);
-  // using the apollo hook useMutation pass the
-  // ADD_USER mutation in order to talk to graphql
-  // addUser will hold the output and error the error
 
   const [addUser, { error }] = useMutation(ADD_USER);
-  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
@@ -41,9 +37,7 @@ const SignupForm = () => {
       throw new Error("something went wrong!");
     }
 
-    // use try/catch instead of promises to handle errors
     try {
-      // execute addUser mutation and pass in variable data from form
       const { data } = await addUser({
         variables: { ...userFormData }
       });

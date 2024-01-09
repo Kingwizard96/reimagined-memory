@@ -7,7 +7,7 @@ const { authMiddleware } = require('./utils/auth');
 const path = require('path');
 const db = require('./config/connection');
 
-const { fetchNasaData } = require('./utils/nasaApi');
+const { fetchNasaData } = require('./controllers/nasaApi');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
