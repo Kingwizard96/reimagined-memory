@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import logo from '/assets/NASA_Logo.png'; // Replace with the path to your circular logo
+import logo from '/assets/nasa-logo.png'; // Replace with the path to your circular logo
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 

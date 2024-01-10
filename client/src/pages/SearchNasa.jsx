@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_NASA_IMAGES } from '../utils/queries'; // Define your GraphQL query
 
