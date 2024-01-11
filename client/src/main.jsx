@@ -7,16 +7,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import SearchNasa from './pages/SearchNasa'
 import SavedNasa from './pages/SavedNasa'
-// import NotFound from './components/NotFound'
-import AboutPage from './pages/About'
-import ContactPage from './pages/Contact'
+import NotFound from './components/NotFound'
+import About from './pages/About'
+import Contact from './pages/Contact'
+
+
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1 className='display-2'>Page Not Found!!!</h1>,
+    errorElement: <NotFound/>,
     children: [
       {
         index: true,
@@ -28,11 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <AboutPage />
+        element: <About />
       },
       {
         path: '/contact',
-        element: <ContactPage />
+        element: <Contact />
       }
     ]
   }

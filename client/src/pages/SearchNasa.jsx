@@ -23,7 +23,7 @@ const SearchNasa = () => {
   };
 
   return (
-    <div>
+    <div fluid className='bg-dark text-light'>
       <h2>Search NASA Images</h2>
       <p>Example Date:"YYYY-MM-DD"</p>
       <div>

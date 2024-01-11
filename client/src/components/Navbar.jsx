@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import logo from '/assets/nasa-logo.png'; // Replace with the path to your circular logo
+import logo from '/assets/nasa-logo.png';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
@@ -21,6 +21,12 @@ const AppNavbar = () => {
           <Nav className='ml-auto'>
             <Nav.Link as={Link} to='/'>
               See Images
+            </Nav.Link>
+            <Nav.Link as={Link} to='/about'>
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to='/contact'>
+              Contact
             </Nav.Link>
             {Auth.loggedIn() ? (
               <>
