@@ -40,6 +40,7 @@ const typeDefs = `
     title: String!
     url: String!
     date: String!
+    explanation:String
   }
 `;
 

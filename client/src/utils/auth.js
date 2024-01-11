@@ -5,7 +5,7 @@ class AuthService {
         return decode(this.getToken());
     }
 
-    logged  = () => {
+    loggedIn() {
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
     }

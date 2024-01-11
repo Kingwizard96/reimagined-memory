@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import logo from '/assets/nasa-logo.png'; // Replace with the path to your circular logo
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
+import Auth from '../utils/auth';
 
 const AppNavbar = () => {
   const [showModal, setShowModal] = useState(false);

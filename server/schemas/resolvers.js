@@ -21,21 +21,15 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
-    users: async () => {
-      return User.find().select("-__v -password").populate("savedNasaImages");
-    },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).select("-__v -password").populate("savedNasaImages");
-    },
+    // users: async () => {
+    //   return User.find().select("-__v -password").populate("savedNasaImages");
+    // },
+    // user: async (parent, { username }) => {
+    //   return User.findOne({ username }).select("-__v -password").populate("savedNasaImages");
+    // },
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return { token, user };
-    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -43,15 +37,25 @@ const resolvers = {
         throw new AuthenticationError("Incorrect credentials");
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPassword = await user.isCorrectPassword(password);
 
-      if (!correctPw) {
+      if (!correctPassword) {
         throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
       return { token, user };
     },
+    
+    addUser: async (parent, args) => {
+      console.log('hello user', args)
+      const user = await User.create(args);
+      console.log('hello user after creation', user)
+      const token = signToken(user);
+      console.log('hello user after creation token ', user,token)
+      return { token, user };
+    },
+    
 
     saveNasaImage: async (parent, {nasaImage}, context) => {
       if (context.user) {
