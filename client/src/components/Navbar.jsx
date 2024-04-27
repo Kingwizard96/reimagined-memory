@@ -5,6 +5,8 @@ import logo from '/assets/nasa-logo.png';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage, faInfoCircle, faEnvelope, faSave, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 const AppNavbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,35 +15,27 @@ const AppNavbar = () => {
     <Navbar bg='dark' variant='dark' expand='lg'>
       <Container fluid>
         <Navbar.Brand as={Link} to='/'>
-          <img src={logo} alt="Logo" width="30" height="30" className="d-inline-block align-top rounded-circle" />
-          <span className="ml-2">MyNasaApp</span>
+          <img src={logo} alt="NASA Logo" width="60" height="50" className="d-inline-block align-top rounded-circle" />
+          <span className="ml-3 font-weight-bold">MyNasaApp</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='navbar' />
+        <Navbar.Toggle aria-controls='navbar' className='custom-toggler' />
         <Navbar.Collapse id='navbar' className='justify-content-end'>
           <Nav className='ml-auto'>
-            <Nav.Link as={Link} to='/'>
-              See Images
-            </Nav.Link>
-            <Nav.Link as={Link} to='/about'>
-              About
-            </Nav.Link>
-            <Nav.Link as={Link} to='/contact'>
-              Contact
-            </Nav.Link>
+            <Nav.Link as={Link} to='/'><FontAwesomeIcon icon={faImage} /> See Images</Nav.Link>
+            <Nav.Link as={Link} to='/about'><FontAwesomeIcon icon={faInfoCircle} /> About</Nav.Link>
+            <Nav.Link as={Link} to='/contact'><FontAwesomeIcon icon={faEnvelope} /> Contact</Nav.Link>
             {Auth.loggedIn() ? (
               <>
-                <Nav.Link as={Link} to='/saved'>
-                  See Your Saved Images
-                </Nav.Link>
-                <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                <Nav.Link as={Link} to='/saved'><FontAwesomeIcon icon={faSave} /> See Your Saved Images</Nav.Link>
+                <Nav.Link onClick={Auth.logout}><FontAwesomeIcon icon={faSignInAlt} /> Logout</Nav.Link>
               </>
             ) : (
-              <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              <Nav.Link onClick={() => setShowModal(true)}><FontAwesomeIcon icon={faSignInAlt} /> Login/Sign Up</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
       </Container>
-
+      {/* ... rest of your component */}
       <Modal
         size='lg'
         show={showModal}

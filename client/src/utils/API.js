@@ -51,6 +51,3 @@ export const removeNasaImage = (nasaImageId, token) => {
     };
 
 //  get nasa data for a logged in user
-export const getNasaData = (apiKey, startDate, endDate) => {
-    return fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${startDate}&end_date=${endDate}`)
-};

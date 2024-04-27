@@ -21,3 +21,15 @@ body {
     margin-top: 0;
     margin-bottom: 0rem;
   }
+
+  span {
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(228, 247, 22);
+  }
+
+  .custom-toggler{
+    font-size: 0.5rem;
+    padding: 0.2rem 0.2rem;
+    margin-right: 1.0rem;
+  }

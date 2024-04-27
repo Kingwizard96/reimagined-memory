@@ -18,7 +18,7 @@ export default function ContactPage() {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center">Contact</h2>
+      <h1 className="text-center">Contact</h1>
       <form onSubmit={state.submitWithRedirect || handleLocalSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">

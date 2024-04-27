@@ -7,8 +7,8 @@ export const GET_NASA_IMAGES = gql`
       data {
         title
         url
-    
         date
+        explanation
       }
     }
   }

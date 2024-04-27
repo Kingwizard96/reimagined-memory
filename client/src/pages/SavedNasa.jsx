@@ -2,13 +2,13 @@ import React from 'react';
 import { useMutation } from '@apollo/client';
 import { SAVE_NASA_IMAGE } from '../utils/mutations'; // Define your GraphQL mutation
 
-const SavedNasa = ({ image, isLoggedIn }) => {
+const SavedNasa = ({ media, isLoggedIn }) => {
   const [saveNasaImage] = useMutation(SAVE_NASA_IMAGE);
 
   const handleSave = () => {
     if (isLoggedIn) {
       saveNasaImage({
-        variables: { nasaImage: image },
+        variables: { nasaImage: media },
         // You may want to include an optimistic response here for a smoother user experience
       })
         .then((response) => {
@@ -25,9 +25,9 @@ const SavedNasa = ({ image, isLoggedIn }) => {
 
   return (
     <div>
-      <h3>{image.title}</h3>
-      <img src={image.url} alt={image.title} />
-      <p>{image.explanation}</p>
+      <h3>{media.title}</h3>
+      <img src={media.url} alt={media.title} />
+      <p>{media.explanation}</p>
 
       {isLoggedIn && (
         <button onClick={handleSave}>

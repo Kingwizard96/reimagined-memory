@@ -1,57 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_NASA_IMAGES } from '../utils/queries'; // Define your GraphQL query
+import React, { useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { GET_NASA_IMAGES } from '../utils/queries';
+import './SearchNasa.css';
 
 const SearchNasa = () => {
-  const [startDate, setStartDate] = useState(''); // Set initial state for start date
-  const [endDate, setEndDate] = useState(''); // Set initial state for end date
-  const [queryData, setqueryData] = useState();
-  const { loading, error, data } = useQuery(GET_NASA_IMAGES, {
-    variables: { startDate, endDate },
-  });
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [executeSearch, { loading, error, data }] = useLazyQuery(GET_NASA_IMAGES);
 
-  useEffect(()=>{
-    return (data) => {
-     setqueryData(data)
-    }
- },[data] )
-
-
-
-  const handleSearch = () => {
-    // Trigger the query when the user performs a search
+  // Handle input changes
+  const handleInputChange = (e, setter) => {
+    setter(e.target.value);
   };
 
+  // Calculate today's date in the format "YYYY-MM-DD"
+  const today = new Date().toISOString().split('T')[0];
+
+  // Handle the form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    executeSearch({ variables: { startDate, endDate } });
+  };
+
+  useEffect(() => {
+    console.log('Data:', data);
+  }, [data]);
+
   return (
-    <div fluid className='bg-dark text-light'>
+    <div className='bg-dark text-light'>
       <h2>Search NASA Images</h2>
-      <p>Example Date:"YYYY-MM-DD"</p>
-      <div>
-        <label>Start Date: </label>
-        <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      </div>
-      <div>
-        <label>End Date: </label>
-        <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      </div>
-      <button onClick={handleSearch}>Search</button>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Start Date:
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => handleInputChange(e, setStartDate)}
+            min="1996-01-01"
+            max={today}
+          />
+        </label>
+        <br />
+        <label>
+          End Date:
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => handleInputChange(e, setEndDate)}
+            min="1996-01-01"
+            max={today}
+          />
+        </label>
+        <br />
+        <button type="submit">Search</button>
+      </form>
+      <br />
 
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
+      {error && <p>Error fetching data: {error.message}</p>}
 
-      {queryData && queryData.getNasaData && (
-        <div>
-          {/* Render NASA images here based on the data received */}
-          {data.getNasaData.data.map((image) => (
-            <div key={image.date}>
-              <h3>{image.title}</h3>
-              <img src={image.url} alt={image.title} />
-              <p>{image.explanation}</p>
+      {data && data.nasaImages && (
+        <div className='card-container'>
+          {data.nasaImages.data.map((media, index) => (
+            <div className='card' key={index}>
+              <img src={media.url} alt={media.title} />
+              <h3>{media.title}</h3>
+              <p>{media.date}</p>
+              <p>{media.explanation}</p>
             </div>
           ))}
         </div>
       )}
     </div>
+    
   );
 };
 

@@ -3,7 +3,7 @@ import React from 'react';
 const About = () => {
   return (
     <div>
-      <h2>About Our Project</h2>
+      <h1>About Our Project</h1>
       <p>
         Welcome to our NASA Image Explorer! This project allows you to search and explore
         fascinating images provided by NASA's Astronomy Picture of the Day (APOD) API.
@@ -20,6 +20,7 @@ const About = () => {
         and leverages the NASA APOD API for fetching stunning images. Thank you for joining us on
         this cosmic journey!
       </p>
+      <br />
     </div>
   );
 };

@@ -36,7 +36,6 @@ const typeDefs = `
   }
 
   type NasaImage {
-    id: ID!
     title: String!
     url: String!
     date: String!
